@@ -1,11 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useQuery, gql } from '@apollo/client';
+import React from 'react'
+const HELLO = gql`
+  query {
+    hello(name:"Jesse")
+  }
+`
+const App: React.FC = () => {
+  const { data, loading, error } = useQuery(HELLO)
 
+  if (loading) {
+    return <div>Loading...</div>
+  }
 
-function App() {
   return (
     <div className="App" >
-      hello
+      {data.hello}
     </div>
   );
 }
