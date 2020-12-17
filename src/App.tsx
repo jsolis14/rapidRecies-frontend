@@ -1,22 +1,38 @@
 import { useQuery, gql } from '@apollo/client';
 import React from 'react'
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { Home } from './components/Home/Home';
+import { Login } from './components/user/Login';
+import { Register } from './components/user/Register';
+
 const HELLO = gql`
   query {
     hello(name:"Jesse")
   }
 `
 const App: React.FC = () => {
-  const { data, loading, error } = useQuery(HELLO)
-
-  if (loading) {
-    return <div>Loading...</div>
-  }
-
   return (
-    <div className="App" >
-      {data.hello}
-    </div>
-  );
+    <BrowserRouter>
+      <div>
+        <header>
+          <div>
+            <Link to="/login">Login</Link>
+          </div>
+          <div>
+            <Link to="/register">Register</Link>
+          </div>
+          <div>
+            <Link to="/">Home</Link>
+          </div>
+        </header>
+      </div>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+      </Switch>
+    </BrowserRouter>
+  )
 }
 
 export default App;
