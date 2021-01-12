@@ -25,6 +25,11 @@ export const Login: React.FC<RouteComponentProps> = ({ history }) => {
     async function submitForm(e: React.FormEvent<HTMLFormElement>, mutation: any, variables: any) {
         e.preventDefault()
         const res = await mutation(variables)
+
+        if (res && res.data) {
+            localStorage.setItem('accessToken', res.data.login.acessToken)
+        }
+
         history.push('/')
         console.log(res)
     }

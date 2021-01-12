@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import { Home } from './components/Home/Home';
 import { Login } from './components/user/Login';
 import { Register } from './components/user/Register';
+import { TestAuth } from './components/user/TestAuth';
 
 const HELLO = gql`
   query {
@@ -24,12 +25,16 @@ const App: React.FC = () => {
           <div>
             <Link to="/">Home</Link>
           </div>
+          <div>
+            <Link to='test'>Test Auth</Link>
+          </div>
         </header>
       </div>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
+        <Route exact path="/test" component={TestAuth} />
       </Switch>
     </BrowserRouter>
   )
