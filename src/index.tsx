@@ -35,21 +35,27 @@ const httpLink = createHttpLink({
 
 const authLink = setContext(async (_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem('accessToken');
+  let token = localStorage.getItem('accessToken');
   // return the headers to the context so httpLink can read them
 
   // try refresh token if no access token
   if (token) {
     if (!isTokenValid(token)) {
       console.log('token is expired')
-      //try the refresh token
-      // const res = await fetch('http://localhost:4000/refresh_token', { method: 'POST', credentials: 'include' })
-      // const result = await res.json()
-      // console.log(result)
+      // try the refresh token
+      const res = await fetch('http://localhost:4000/refresh_token', { method: 'POST', credentials: 'include' })
+      const { ok, accessToken } = await res.json()
+
+      if (ok) {
+        token = accessToken
+        localStorage.setItem('accessToken', accessToken)
+      } else {
+        token = ''
+        localStorage.setItem('accessToken', '')
+
+      }
     }
 
-
-  } else {
 
   }
   return {
