@@ -26,7 +26,7 @@ export const Register: React.FC<RouteComponentProps> = ({ history }) => {
     async function submitForm(e: React.FormEvent<HTMLFormElement>, mutation: any, variables: any) {
         e.preventDefault()
         const res = await mutation(variables)
-
+        history.push('/')
         console.log(res)
     }
 
