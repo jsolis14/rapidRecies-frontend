@@ -6,7 +6,7 @@ import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { ApolloProvider } from '@apollo/client';
 import jwt_decode, { JwtDecodeOptions } from "jwt-decode";
-import { rmdirSync } from 'fs';
+
 
 interface JWTDecode {
   exp: number,
