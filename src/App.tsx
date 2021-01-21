@@ -5,7 +5,7 @@ import { Home } from './components/Home/Home';
 import { Login } from './components/user/Login';
 import { Register } from './components/user/Register';
 import { TestAuth } from './components/user/TestAuth';
-import NavBar from './components/NavBar/NavBar';
+import { NavBar } from './components/NavBar/NavBar';
 const HELLO = gql`
   query {
     hello(name:"Jesse")
@@ -14,11 +14,9 @@ const HELLO = gql`
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <div>
-        <nav>
-          <NavBar />
-        </nav>
-      </div>
+      <Switch>
+        <Route path="/" component={NavBar} />
+      </Switch>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
